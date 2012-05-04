@@ -1,0 +1,12 @@
+%This script is used to load the data necessary for running the genesis
+%potential index algorithm
+
+
+if ~exist('dataLoaded', 'var') || ~dataLoaded
+    dataPath = '/project/expeditions/lem/data/ERA-Interim/vorticity_relHumidity_windShear2/vorticity_relHumidity_vShear_1979-present.nc';
+    
+    
+    
+    
+    dataLoaded = true;
+end
