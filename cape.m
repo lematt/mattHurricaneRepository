@@ -1,7 +1,7 @@
 function [caped,tob,iflag] = cape(tp,rp,pp,t,r,p,sig);
 
 %function [caped,tob,iflag] = cape(tp,rp,pp,t,r,p,sig);
-%This function was written by Kerry Emanuel at MIT (emanuel@mit.edu)
+%This algorithm was written by Kerry Emanuel at MIT
 %inputs
 % tp parcel temperature (in K)
 % rp parcel mixing ratio (in g/g)
