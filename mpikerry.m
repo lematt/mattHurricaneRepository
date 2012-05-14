@@ -1,7 +1,7 @@
 function [pmin,vmax,capea,ifl] = mpikerry(sst,psl,p,t,r)
 
 %function [pmin,vmax,ifl]=mpikerry(sst,psl,p,t,r);
-%
+%This function was written by Kerry Emanuel at MIT (emanuel@mit.edu)
 %inputs
 % sst in degrees Celsius
 % psl (central pressure) in mb
