@@ -26,6 +26,7 @@ if ~exist('dataLoaded', 'var') || ~dataLoaded
     levels = ncread('/project/expeditions/lem/data/temperature_eraInterim_1979-present.nc', 'lev');
     [sortedLevels, sortIndices] = sort(levels, 'descend');
     sortedLevels = double(sortedLevels);
+    sortedLevels = sortedLevels * .01;
     
     %load the specific humidity data (data is in kg/kg)
     specificHumidity = ncread('/project/expeditions/lem/data/specificHumidity_eraInterim_1979-present.nc', 'var133');
@@ -36,9 +37,6 @@ if ~exist('dataLoaded', 'var') || ~dataLoaded
     if ~all(splevels == levels)
         error('levels in specific humidity are not the same as in temperature')
     end
-    
-    %change levels from Pa to mb
-    levels = levels * .01;
     
     % Reverse the order of the pressure levels in the specific humidity and temp.
     temps = temps(:, :, :, sortIndices);
@@ -67,20 +65,20 @@ pminMap = zeros(256, 512);
 
 PIData = cell(size(time, 1), 2);            
 currTime = 1;
-for currentTime = 1:size(time)
+%for currentTime = 1:size(time)
     for i = 1:size(lat)
         for j = 1:size(lon)
             if isnan(sst(i, j, currTime)) %coordinate is on land, no sst
                 continue;
             end
-            [pmin, vmax, ~,~] = mpikerry(sst(i, j, currTime), centralPressure(i, j, currTime), sortedLevels, temps(:, i, j, currTime), mixingRatio(:, i, j, currTime));
+            [pmin, vmax, ~,~] = mpikerry(sst(i, j, currTime), centralPressure(i, j, currTime), sortedLevels, temps(:, i, j, currTime), .622*mixingRatio(:, i, j, currTime));
             vmaxMap(i, j) = vmax;
             pminMap(i, j) = pmin;
         end
     end
-    PIData{currentTime, 1} = vmaxMap;
-    PIData{currentTime, 2} = pminMap;
-end
+    PIData{currTime, 1} = vmaxMap;
+    PIData{currTime, 2} = pminMap;
+%end
 
 %imagesc(vmaxMap)
 save('PIMaps.mat', 'PIData');
