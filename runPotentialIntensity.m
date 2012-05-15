@@ -73,7 +73,7 @@ for currentTime = 1:size(time)
             if isnan(sst(i, j, currTime)) %coordinate is on land, no sst
                 continue;
             end
-            [pmin, vmax, ~,~] = mpikerry(sst(i, j, currTime), centralPressure(i, j, currTime), sortedLevels, temps(:, i, j, currTime), .622*mixingRatio(:, i, j, currTime));
+            [pmin, vmax, ~,~] = mpikerry(sst(i, j, currTime), centralPressure(i, j, currTime), sortedLevels, temps(:, i, j, currTime), mixingRatio(:, i, j, currTime));
             vmaxMap(i, j) = vmax;
             pminMap(i, j) = pmin;
         end
