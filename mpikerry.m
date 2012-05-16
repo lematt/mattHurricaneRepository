@@ -16,12 +16,14 @@ function [pmin,vmax,capea,ifl] = mpikerry(sst,psl,p,t,r)
 % ifl: 1=ok, 0=no convergence, 2=CAPE routine failed
 %
 
-ckcd=0.5;   %ratio of C_k to C_d
-sig=0.5;    %0=reversible ascent, 1=pseudo-adiabatic ascent
-idiss=0;    %0=no dissipative heating
-b=2;      %exponent in assumed profile of azimuthal velocity (v=v_m(r/r_m))^b
-nk=1;       %level from which parcel lifts
-vreduc=0.8;  %factor to reduce gradient wind to 10m wind
+%These constants have been changed to what they are set to in the Fortran
+%code found on Dr. Emanuel's website.
+ckcd=0.9;   %ratio of C_k to C_d  (originally 0.5)
+sig=0.0;    %0=reversible ascent, 1=pseudo-adiabatic ascent (originally 0.5
+idiss=1;    %0=no dissipative heating (this was originally set to 0)
+b=2;      %exponent in assumed profile of azimuthal velocity (v=v_m(r/r_m))^b (originally 2)
+nk=1;       %level from which parcel lifts (originally 1)
+vreduc=.8;  %factor to reduce gradient wind to 10m (wind originally .8)
 
 sstk=sst+273.15;
 eso=6.112*exp(17.67*sst/(243.5+sst));

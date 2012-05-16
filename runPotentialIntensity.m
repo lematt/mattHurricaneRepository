@@ -76,9 +76,8 @@ for currTime = 1:size(time, 1)
             vmaxMap(i, j) = vmax;
             pminMap(i, j) = pmin;
         end
-        i
     end
-    currTime
+    currTime %print the currTime to check the progress of the script
     PIData{currTime, 1} = vmaxMap;
     PIData{currTime, 2} = pminMap;
 end
